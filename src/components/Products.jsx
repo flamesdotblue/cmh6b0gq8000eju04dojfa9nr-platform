@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+
 const products = [
   {
     id: 'volt-x1',
@@ -31,9 +33,21 @@ const products = [
 
 function ProductCard({ product }) {
   return (
-    <div className="group rounded-2xl border border-white/10 bg-white/5 overflow-hidden hover:bg-white/[0.08] transition">
+    <motion.div
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, ease: [0.22,1,0.36,1] }}
+      className="group rounded-2xl border border-white/10 bg-white/5 overflow-hidden hover:bg-white/[0.08] transition"
+    >
       <div className="relative aspect-[4/3] overflow-hidden">
-        <img src={product.image} alt={product.name} className="h-full w-full object-cover group-hover:scale-[1.03] transition" />
+        <motion.img
+          src={product.image}
+          alt={product.name}
+          className="h-full w-full object-cover"
+          whileHover={{ scale: 1.05 }}
+          transition={{ type: 'spring', stiffness: 220, damping: 20 }}
+        />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
       </div>
       <div className="p-4">
@@ -52,11 +66,11 @@ function ProductCard({ product }) {
           </div>
         </div>
         <div className="mt-4 flex gap-2">
-          <button className="flex-1 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black font-medium px-4 py-2 transition">Buy now</button>
-          <button className="rounded-lg bg-white/10 hover:bg-white/20 px-4 py-2 transition">Details</button>
+          <motion.button whileTap={{ scale: 0.98 }} className="flex-1 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black font-medium px-4 py-2 transition">Buy now</motion.button>
+          <motion.button whileTap={{ scale: 0.98 }} className="rounded-lg bg-white/10 hover:bg-white/20 px-4 py-2 transition">Details</motion.button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

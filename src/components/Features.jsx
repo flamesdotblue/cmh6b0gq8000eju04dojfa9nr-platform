@@ -1,4 +1,5 @@
 import { ShieldCheck, Truck, RefreshCcw, Smartphone } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const items = [
   {
@@ -23,6 +24,16 @@ const items = [
   }
 ];
 
+const container = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.12 } }
+};
+
+const card = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22,1,0.36,1] } }
+};
+
 export default function Features() {
   return (
     <section id="features" className="relative py-20 bg-gradient-to-b from-black to-zinc-950">
@@ -32,17 +43,23 @@ export default function Features() {
           <p className="mt-3 text-white/70">From selection to delivery, we fine-tuned every step so you can upgrade with confidence.</p>
         </div>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
+        >
           {items.map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="group rounded-xl border border-white/10 bg-white/5 p-5 hover:bg-white/[0.08] transition">
+            <motion.div key={title} variants={card} className="group rounded-xl border border-white/10 bg-white/5 p-5 hover:bg-white/[0.08] transition">
               <div className="h-10 w-10 rounded-lg bg-emerald-400/10 ring-1 ring-emerald-400/30 flex items-center justify-center">
                 <Icon className="h-5 w-5 text-emerald-300" />
               </div>
               <h3 className="mt-4 font-semibold">{title}</h3>
               <p className="mt-1 text-sm text-white/70">{desc}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
