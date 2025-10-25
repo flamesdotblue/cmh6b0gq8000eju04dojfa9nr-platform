@@ -9,7 +9,7 @@ const fadeUp = {
 export default function Hero() {
   return (
     <section className="relative min-h-[90vh] w-full overflow-hidden bg-black">
-      {/* Animated background blobs (responsive sizes to avoid pushing layout) */}
+      {/* Animated background blobs (do not affect layout) */}
       <motion.span
         aria-hidden
         className="pointer-events-none absolute -top-40 -left-24 h-[28rem] w-[28rem] sm:h-[34rem] sm:w-[34rem] rounded-full blur-3xl"
@@ -58,7 +58,7 @@ export default function Hero() {
           <button className="rounded-full bg-white/10 hover:bg-white/20 backdrop-blur px-4 py-2 text-sm font-medium transition">Sign In</button>
         </motion.nav>
 
-        {/* Ensure side-by-side at md+ and prevent wrapping below */}
+        {/* Two-column layout from md+ to keep text beside animation */}
         <div className="mt-14 md:mt-16 grid md:grid-cols-2 gap-10 md:gap-12 items-center">
           {/* Left: Copy */}
           <div className="min-w-0 order-2 md:order-1">
@@ -128,7 +128,7 @@ export default function Hero() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="order-1 md:order-2 relative min-w-0 w-full"
           >
-            <div className="relative mx-auto w-full max-w-sm sm:max-w-md md:max-w-md lg:max-w-lg justify-self-center md:justify-self-end">
+            <div className="relative mx-auto w-full max-w-sm sm:max-w-md md:max-w-md lg:max-w-lg">
               {/* Glowing conic ring */}
               <div className="absolute -inset-1 rounded-[2rem] opacity-60 blur-xl" style={{ background: 'conic-gradient(from 180deg at 50% 50%, rgba(16,185,129,0.35), rgba(6,182,212,0.35), rgba(16,185,129,0.35))' }} />
 
@@ -188,7 +188,7 @@ export default function Hero() {
                 ))}
               </svg>
 
-              {/* Orbiting particles (positioned without affecting layout) */}
+              {/* Orbiting particles */}
               <motion.span
                 className="pointer-events-none absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-400 shadow-[0_0_30px_rgba(16,185,129,0.8)]"
                 animate={{ rotate: 360 }}
