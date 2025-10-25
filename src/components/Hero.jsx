@@ -9,10 +9,10 @@ const fadeUp = {
 export default function Hero() {
   return (
     <section className="relative min-h-[90vh] w-full overflow-hidden bg-black">
-      {/* Animated background blobs */}
+      {/* Animated background blobs (responsive sizes to avoid pushing layout) */}
       <motion.span
         aria-hidden
-        className="pointer-events-none absolute -top-32 -left-20 h-[36rem] w-[36rem] rounded-full blur-3xl"
+        className="pointer-events-none absolute -top-40 -left-24 h-[28rem] w-[28rem] sm:h-[34rem] sm:w-[34rem] rounded-full blur-3xl"
         style={{ background: 'radial-gradient(circle at 30% 30%, rgba(16,185,129,0.45), transparent 60%)' }}
         initial={{ x: -40, y: -20, opacity: 0.7 }}
         animate={{ x: 20, y: 10, opacity: 0.9 }}
@@ -20,7 +20,7 @@ export default function Hero() {
       />
       <motion.span
         aria-hidden
-        className="pointer-events-none absolute -bottom-40 -right-24 h-[40rem] w-[40rem] rounded-full blur-[100px]"
+        className="pointer-events-none absolute -bottom-44 -right-24 h-[30rem] w-[30rem] sm:h-[38rem] sm:w-[38rem] rounded-full blur-[100px]"
         style={{ background: 'radial-gradient(circle at 70% 70%, rgba(6,182,212,0.4), transparent 60%)' }}
         initial={{ x: 40, y: 20, opacity: 0.6 }}
         animate={{ x: -10, y: -30, opacity: 0.85 }}
@@ -39,7 +39,7 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-10 container mx-auto px-6 md:px-10 lg:px-16 pt-28 pb-20">
+      <div className="relative z-10 container mx-auto px-6 md:px-10 lg:px-16 pt-24 md:pt-28 pb-16 md:pb-20">
         <motion.nav
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -58,8 +58,10 @@ export default function Hero() {
           <button className="rounded-full bg-white/10 hover:bg-white/20 backdrop-blur px-4 py-2 text-sm font-medium transition">Sign In</button>
         </motion.nav>
 
-        <div className="mt-20 grid lg:grid-cols-2 gap-10 items-center">
-          <div>
+        {/* Ensure side-by-side at md+ and prevent wrapping below */}
+        <div className="mt-14 md:mt-16 grid md:grid-cols-2 gap-10 md:gap-12 items-center">
+          {/* Left: Copy */}
+          <div className="min-w-0 order-2 md:order-1">
             <motion.div
               variants={fadeUp}
               initial="hidden"
@@ -76,7 +78,7 @@ export default function Hero() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.4 }}
               custom={1}
-              className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight"
+              className="mt-6 text-4xl sm:text-5xl xl:text-6xl font-semibold leading-tight tracking-tight"
             >
               Upgrade your mobile life with living visuals
             </motion.h1>
@@ -118,15 +120,15 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Animated device motif (SVG + orbits) */}
+          {/* Right: Animated device motif */}
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="relative"
+            className="order-1 md:order-2 relative min-w-0 w-full"
           >
-            <div className="relative mx-auto w-full max-w-md">
+            <div className="relative mx-auto w-full max-w-sm sm:max-w-md md:max-w-md lg:max-w-lg justify-self-center md:justify-self-end">
               {/* Glowing conic ring */}
               <div className="absolute -inset-1 rounded-[2rem] opacity-60 blur-xl" style={{ background: 'conic-gradient(from 180deg at 50% 50%, rgba(16,185,129,0.35), rgba(6,182,212,0.35), rgba(16,185,129,0.35))' }} />
 
@@ -186,15 +188,15 @@ export default function Hero() {
                 ))}
               </svg>
 
-              {/* Orbiting particles */}
+              {/* Orbiting particles (positioned without affecting layout) */}
               <motion.span
-                className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-400 shadow-[0_0_30px_rgba(16,185,129,0.8)]"
+                className="pointer-events-none absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-400 shadow-[0_0_30px_rgba(16,185,129,0.8)]"
                 animate={{ rotate: 360 }}
                 transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
                 style={{ transformOrigin: '140px 0px' }}
               />
               <motion.span
-                className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400 shadow-[0_0_30px_rgba(6,182,212,0.8)]"
+                className="pointer-events-none absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400 shadow-[0_0_30px_rgba(6,182,212,0.8)]"
                 animate={{ rotate: -360 }}
                 transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
                 style={{ transformOrigin: '-160px -20px' }}
